@@ -4,10 +4,6 @@ import { AuthDto, SignUpAuthDto } from './dto/auth.dto';
 import * as csurf from 'csurf';
 import { ApiHeader } from '@nestjs/swagger';
 
-@ApiHeader({
-  name: 'X-CSRF-Token',
-  description: 'CSRF Token',
-})
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
@@ -19,16 +15,28 @@ export class AuthController {
     };
   }
 
+  @ApiHeader({
+    name: 'X-CSRF-Token',
+    description: 'CSRF Token',
+  })
   @Post('signup')
   signup(@Body() dto: SignUpAuthDto) {
     return this.authService.signup(dto);
   }
 
+  @ApiHeader({
+    name: 'X-CSRF-Token',
+    description: 'CSRF Token',
+  })
   @Post('signin')
   async signin(@Request() req, @Response() res, @Body() dto: AuthDto) {
     return this.authService.signin(dto, req, res);
   }
 
+  @ApiHeader({
+    name: 'X-CSRF-Token',
+    description: 'CSRF Token',
+  })
   @Get('signout')
   signout(@Request() req, @Response() res) {
     return this.authService.signout(req, res);

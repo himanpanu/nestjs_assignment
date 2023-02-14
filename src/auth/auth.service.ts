@@ -86,7 +86,7 @@ export class AuthService {
     req.user = foundUser;
     console.log(req.user);
 
-    return res.send({ message: 'Logged in successfully' });
+    return res.send({ message: 'Logged in successfully', token });
   }
 
   async signout(req: Request, res: Response) {

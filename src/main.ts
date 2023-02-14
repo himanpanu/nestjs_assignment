@@ -23,6 +23,7 @@ async function bootstrap() {
   app.use(csurf({ cookie: true }));
 
   const config = new DocumentBuilder()
+    .addBearerAuth()
     .setTitle('Users Crud with Auth')
     .setDescription(
       'Ability to add users and login, signup with session and cookies',

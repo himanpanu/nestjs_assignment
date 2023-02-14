@@ -12,11 +12,12 @@ import {
 import { JwtAuthGuard } from 'src/auth/jwt.guard';
 import { UpdateUserDto } from './user.dto';
 import { UsersService } from './user.service';
-import { ApiQuery, ApiHeader, ApiParam } from '@nestjs/swagger';
+import { ApiQuery, ApiHeader, ApiParam, ApiBearerAuth } from '@nestjs/swagger';
 import * as csrf from 'csurf';
 
 const crsfMiddleware = csrf({ cookie: true });
 
+@ApiBearerAuth()
 @ApiHeader({
   name: 'X-CSRF-Token',
   description: 'CSRF Token',
@@ -24,7 +25,7 @@ const crsfMiddleware = csrf({ cookie: true });
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
-
+  @UseGuards(JwtAuthGuard)
   @ApiParam({ name: 'id' })
   @Get('/:id')
   getMyUser(@Param() params: { id: string }) {
@@ -43,11 +44,12 @@ export class UsersController {
     return this.usersService.deleteUser(params.id);
   }
 
-  @Get()
+  @Get('/')
   @ApiQuery({ name: 'search', description: 'search string' })
   @ApiQuery({ name: 'perPage', description: 'limit' })
   @ApiQuery({ name: 'page', description: 'offset' })
   getUsers(@Query() query) {
+    console.log(query);
     return this.usersService.getUsers(query);
   }
 }
