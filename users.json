@@ -1,0 +1,10 @@
+[{
+  "_id": {
+    "$oid": "63eb694a2955974e4027e186"
+  },
+  "firstName": "Michael",
+  "lastName": "Crank",
+  "email": "blink@hi.cop",
+  "password": "$2b$10$q5sk5Abh/R0fhMJsc5bC5OCkifOoYJKnm1Lqdity9gR3LqDO1r1s2",
+  "__v": 0
+}]

@@ -13,10 +13,8 @@ import { JwtAuthGuard } from 'src/auth/jwt.guard';
 import { UpdateUserDto } from './user.dto';
 import { UsersService } from './user.service';
 import { ApiQuery, ApiHeader, ApiParam, ApiBearerAuth } from '@nestjs/swagger';
-import * as csrf from 'csurf';
 
-const crsfMiddleware = csrf({ cookie: true });
-
+@UseGuards(JwtAuthGuard)
 @ApiBearerAuth()
 @ApiHeader({
   name: 'X-CSRF-Token',
@@ -25,20 +23,19 @@ const crsfMiddleware = csrf({ cookie: true });
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
-  @UseGuards(JwtAuthGuard)
-  @ApiParam({ name: 'id' })
+  @ApiParam({ name: 'id', required: true })
   @Get('/:id')
   getMyUser(@Param() params: { id: string }) {
     return this.usersService.getMyUser(params.id);
   }
 
-  @ApiParam({ name: 'id' })
+  @ApiParam({ name: 'id', required: true })
   @Put('/:id')
   updateUser(@Param() params: { id: string }, @Body() body: UpdateUserDto) {
     return this.usersService.updateUser(params.id, body);
   }
 
-  @ApiParam({ name: 'id' })
+  @ApiParam({ name: 'id', required: true })
   @Delete('/:id')
   deleteUser(@Param() params: { id: string }) {
     return this.usersService.deleteUser(params.id);

@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "a627b79c-c4f8-49ff-a77f-cbba61045435",
+		"name": "NestJS_Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users Listing",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"firstName\": \"Michael\",\r\n\"lastName\": \"Brown\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SignIn",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-CSRF-Token",
+						"value": "vMD2KDwm-8jg6rGvunDSdtwF-mO72KtIsRC8",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"email\": \"blink@hi.cop\",\r\n\"password\": \"bling\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/auth/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Profile",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-CSRF-Token",
+						"value": "MAk492hT-YS5WkMY3xUUOc1-18dGEedVy5og",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Geto\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/63eb8fd46995bda2fdcaba33",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"63eb8fd46995bda2fdcaba33"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SignOut",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/users/signout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"signout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Csrf Token",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/auth/getCsrfToken",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"getCsrfToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "X-CSRF-Token",
+						"value": "MAk492hT-YS5WkMY3xUUOc1-18dGEedVy5og",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/users/63eb8fd46995bda2fdcaba33",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"63eb8fd46995bda2fdcaba33"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

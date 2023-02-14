@@ -24,6 +24,7 @@ export class UsersService {
   }
 
   async getUsers(params) {
+    console.log(params);
     const perPage = params?.perPage || 10;
     const page = Math.max(1, Number(params?.page || 0)) - 1;
     const filterText = params?.search;
@@ -54,6 +55,7 @@ export class UsersService {
       .limit(perPage)
       .skip(perPage * page)
       .exec();
+    console.log(users);
 
     return { users };
   }
